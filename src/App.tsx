@@ -747,7 +747,7 @@ function App() {
                       fill="#8884d8"
                       dataKey="value"
                     >
-                      {postingDurationData.map((entry, index) => (
+                      {postingDurationData.map((_, index) => (
                         <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                       ))}
                     </Pie>
