@@ -31,7 +31,7 @@ type Job = {
 const jobs: Job[] = [
   {
     id: 1,
-    title: 'Software Engineer',
+    title: 'Cleaner',
     location: 'San Francisco, CA',
     status: 'active',
     recruiter: 'Sarah Wilson',
@@ -43,7 +43,7 @@ const jobs: Job[] = [
   },
   {
     id: 2,
-    title: 'Product Manager',
+    title: 'Supervisor',
     location: 'New York, NY',
     status: 'active',
     recruiter: 'John Smith',
@@ -55,7 +55,7 @@ const jobs: Job[] = [
   },
   {
     id: 3,
-    title: 'UX Designer',
+    title: 'Manager',
     location: 'Seattle, WA',
     status: 'inactive',
     recruiter: 'Emma Brown',
@@ -67,19 +67,19 @@ const jobs: Job[] = [
   },
   {
     id: 4,
-    title: 'Data Scientist',
+    title: 'Cleaner',
     location: 'Austin, TX',
     status: 'active',
     recruiter: 'Mike Johnson',
-    applies: 56,
-    screened: 40,
-    rejected: 15,
-    hired: 5,
+    applies: 0,
+    screened: 0,
+    rejected: 0,
+    hired: 0,
     sponsored: 'none'
   },
   {
     id: 5,
-    title: 'DevOps Engineer',
+    title: 'Security guard',
     location: 'Boston, MA',
     status: 'active',
     recruiter: 'Lisa Taylor',
