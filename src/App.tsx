@@ -109,6 +109,7 @@ function App() {
   const [showModifiedOverlay, setShowModifiedOverlay] = useState(false)
   const [inputMode, setInputMode] = useState<'applies' | 'budget'>('applies')
   const [showMarketInsights, setShowMarketInsights] = useState(false)
+  const [showCompetitiveInsights, setShowCompetitiveInsights] = useState(false)
 
   const calculateBaseCPA = () => {
     if (inputMode === 'applies') {
@@ -306,7 +307,18 @@ function App() {
                     <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
                       Job Content Analysis
                     </a>
-                    <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
+                    {/* <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
+                      Competitive Insights
+                    </a> */}
+                    <a 
+                      href="#" 
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" 
+                      role="menuitem"
+                      onClick={() => {
+                        setShowAnalyticsDropdown(false)
+                        setShowCompetitiveInsights(true)
+                      }}
+                    >
                       Competitive Insights
                     </a>
                   </div>
@@ -616,7 +628,7 @@ function App() {
           </>
         )}
 
-        {/* Market Insights Modal */}
+      {/* Market Insights Modal */}
       {showMarketInsights && (
         <div className="fixed inset-0 bg-white z-50 overflow-auto">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
@@ -633,6 +645,31 @@ function App() {
               <img 
                 src="/market_insights.png"
                 alt="Market Insights Dashboard"
+                className="w-full h-auto"
+                style={{ maxWidth: '100%', height: 'auto' }}
+              />
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Market Insights Modal */}
+      {showCompetitiveInsights && (
+        <div className="fixed inset-0 bg-white z-50 overflow-auto">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-xl font-semibold">Competitive Insights</h2>
+              <button
+                onClick={() => setShowCompetitiveInsights(false)}
+                className="text-gray-400 hover:text-gray-500"
+              >
+                <XMarkIcon className="h-6 w-6" />
+              </button>
+            </div>
+            <div className="mt-4">
+              <img 
+                src="/competitive_insights.png"
+                alt="Competitive Insights Dashboard"
                 className="w-full h-auto"
                 style={{ maxWidth: '100%', height: 'auto' }}
               />
