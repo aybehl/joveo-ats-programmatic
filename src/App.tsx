@@ -12,11 +12,8 @@ import {
   ChartBarIcon,
   CheckIcon,
   InformationCircleIcon,
-  UsersIcon,
-  BuildingOfficeIcon,
-  UserGroupIcon
+
 } from '@heroicons/react/24/outline'
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, PieChart, Pie, Cell, BarChart, Bar } from 'recharts'
 
 type Job = {
   id: number
@@ -94,41 +91,8 @@ const jobs: Job[] = [
   }
 ]
 
-const supplyDemandData = [
-  { month: 'Jan', supply: 25000, demand: 15000 },
-  { month: 'Feb', supply: 26000, demand: 16000 },
-  { month: 'Mar', supply: 24000, demand: 14000 },
-  { month: 'Apr', supply: 27000, demand: 17000 },
-  { month: 'May', supply: 23000, demand: 15000 },
-  { month: 'Jun', supply: 28000, demand: 16000 },
-]
 
-const salaryTrendData = [
-  { month: 'Jan', value: 28000 },
-  { month: 'Feb', value: 29000 },
-  { month: 'Mar', value: 31000 },
-  { month: 'Apr', value: 32000 },
-  { month: 'May', value: 30000 },
-  { month: 'Jun', value: 29500 },
-]
 
-const postingDurationData = [
-  { name: '< 30 days', value: 30 },
-  { name: '30-90 days', value: 15 },
-  { name: '90-120 days', value: 20 },
-  { name: '120-180 days', value: 25 },
-  { name: '180 and above', value: 10 },
-]
-
-const COLORS = ['#4CAF50', '#8BC34A', '#CDDC39', '#FFEB3B', '#FFC107']
-
-const ethnicityData = [
-  { name: 'Latino', percentage: 83 },
-  { name: 'Black', percentage: 8 },
-  { name: 'White', percentage: 3 },
-  { name: 'Asian', percentage: 3 },
-  { name: 'Others', percentage: 3 },
-]
 
 function App() {
   const [searchTerm, setSearchTerm] = useState('')
@@ -145,8 +109,6 @@ function App() {
   const [showModifiedOverlay, setShowModifiedOverlay] = useState(false)
   const [inputMode, setInputMode] = useState<'applies' | 'budget'>('applies')
   const [showMarketInsights, setShowMarketInsights] = useState(false)
-  const selectedCategory = 'Technology'
-  const selectedLocation = 'San Francisco Bay Area'
 
   const calculateBaseCPA = () => {
     if (inputMode === 'applies') {
@@ -655,130 +617,29 @@ function App() {
         )}
 
         {/* Market Insights Modal */}
-        {showMarketInsights && (
-          <div className="fixed inset-0 bg-white z-50 overflow-y-auto">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-              <div className="flex justify-between items-center mb-8">
-                <div>
-                  <h2 className="text-2xl font-bold text-gray-900">Market Insights</h2>
-                  <p className="text-sm text-gray-500">Data for {selectedCategory} in {selectedLocation}</p>
-                </div>
-                <button 
-                  onClick={() => setShowMarketInsights(false)}
-                  className="text-gray-400 hover:text-gray-500"
-                >
-                   <XMarkIcon className="h-6 w-6" />
-                </button>
-              </div>
-
-              {/* Market Overview */}
-              <div className="grid grid-cols-4 gap-6 mb-8">
-                <div className="bg-white p-6 rounded-lg shadow">
-                  <div className="flex items-center space-x-3 mb-4">
-                    <UsersIcon className="h-6 w-6 text-blue-500" />
-                    <h4 className="text-lg font-medium">Relative supply</h4>
-                  </div>
-                  <div className="text-xl font-semibold">Moderate</div>
-                  <div className="text-sm text-gray-500">4 candidates per opening</div>
-                </div>
-                <div className="bg-white p-6 rounded-lg shadow">
-                  <div className="flex items-center space-x-3 mb-4">
-                    <ClockIcon className="h-6 w-6 text-blue-500" />
-                    <h4 className="text-lg font-medium">Typical posting duration</h4>
-                  </div>
-                  <div className="text-xl font-semibold">Average</div>
-                  <div className="text-sm text-gray-500">80% jobs are less than 90 days</div>
-                </div>
-                <div className="bg-white p-6 rounded-lg shadow">
-                  <div className="flex items-center space-x-3 mb-4">
-                    <BuildingOfficeIcon className="h-6 w-6 text-blue-500" />
-                    <h4 className="text-lg font-medium">Your competition</h4>
-                  </div>
-                  <div className="text-xl font-semibold">Decreasing</div>
-                  <div className="text-sm text-gray-500">26.1% lower</div>
-                </div>
-                <div className="bg-white p-6 rounded-lg shadow">
-                  <div className="flex items-center space-x-3 mb-4">
-                    <UserGroupIcon className="h-6 w-6 text-blue-500" />
-                    <h4 className="text-lg font-medium">Competitive concentration</h4>
-                  </div>
-                  <div className="text-xl font-semibold">Slightly dispersed</div>
-                  <div className="text-sm text-gray-500">Mix of niche and major employers</div>
-                </div>
-              </div>
-
-              {/* Charts Section */}
-              <div className="grid grid-cols-2 gap-8">
-                {/* Supply vs Demand */}
-                <div className="bg-white p-6 rounded-lg shadow">
-                  <h3 className="text-lg font-medium mb-4">Supply vs Demand Trend</h3>
-                  <AreaChart width={500} height={300} data={supplyDemandData}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="month" />
-                    <YAxis />
-                    <Tooltip />
-                    <Area type="monotone" dataKey="supply" stackId="1" stroke="#8884d8" fill="#8884d8" />
-                    <Area type="monotone" dataKey="demand" stackId="1" stroke="#82ca9d" fill="#82ca9d" />
-                  </AreaChart>
-                </div>
-
-                {/* Salary Trends */}
-                <div className="bg-white p-6 rounded-lg shadow">
-                  <h3 className="text-lg font-medium mb-4">Salary Trends</h3>
-                  <BarChart width={500} height={300} data={salaryTrendData}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="month" />
-                    <YAxis />
-                    <Tooltip />
-                    <Bar dataKey="value" fill="#8884d8" />
-                  </BarChart>
-                </div>
-
-                {/* Posting Duration */}
-                <div className="bg-white p-6 rounded-lg shadow">
-                  <h3 className="text-lg font-medium mb-4">Posting Duration Distribution</h3>
-                  <PieChart width={500} height={300}>
-                    <Pie
-                      data={postingDurationData}
-                      cx={250}
-                      cy={150}
-                      labelLine={false}
-                      outerRadius={100}
-                      fill="#8884d8"
-                      dataKey="value"
-                    >
-                      {postingDurationData.map((_, index) => (
-                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                      ))}
-                    </Pie>
-                    <Tooltip />
-                  </PieChart>
-                </div>
-
-                {/* Ethnic Diversity */}
-                <div className="bg-white p-6 rounded-lg shadow">
-                  <h3 className="text-lg font-medium mb-4">Ethnic Diversity</h3>
-                  <div className="space-y-4">
-                    {ethnicityData.map((item) => (
-                      <div key={item.name}>
-                        <div className="flex justify-between text-sm mb-1">
-                          <span>{item.name}</span>
-                          <span>{item.percentage}%</span>
-                        </div>
-                        <div className="h-2 bg-gray-200 rounded-full">
-                          <div
-                            className="h-2 bg-blue-500 rounded-full"
-                            style={{ width: `${item.percentage}%` }}
-                          />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
+      {showMarketInsights && (
+        <div className="fixed inset-0 bg-white z-50 overflow-auto">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-xl font-semibold">Market Insights</h2>
+              <button
+                onClick={() => setShowMarketInsights(false)}
+                className="text-gray-400 hover:text-gray-500"
+              >
+                <XMarkIcon className="h-6 w-6" />
+              </button>
+            </div>
+            <div className="mt-4">
+              <img 
+                src="/market_insights.png"
+                alt="Market Insights Dashboard"
+                className="w-full h-auto"
+                style={{ maxWidth: '100%', height: 'auto' }}
+              />
             </div>
           </div>
-        )}
+        </div>
+      )}
 
         {/* Modified Overlay */}
         {showModifiedOverlay && (
